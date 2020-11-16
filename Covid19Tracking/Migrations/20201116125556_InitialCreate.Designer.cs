@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Covid19Tracking.Migrations
 {
     [DbContext(typeof(CovidDbContext))]
-    [Migration("20201116114502_NewTest")]
-    partial class NewTest
+    [Migration("20201116125556_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,9 +20,8 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.Citizen", b =>
                 {
-                    b.Property<int>("SSN")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
@@ -48,8 +47,8 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.CitizenLocation", b =>
                 {
-                    b.Property<int>("SSN")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Addr")
                         .HasColumnType("TEXT");
@@ -148,8 +147,8 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.TestedAt", b =>
                 {
-                    b.Property<int>("SSN")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("TestedAtID")
                         .HasColumnType("INTEGER");

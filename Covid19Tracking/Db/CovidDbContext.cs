@@ -37,7 +37,7 @@ namespace Covid19Tracking
                 .HasKey(N => N.NationName);
 
             modelBuilder.Entity<TestCenter>()
-                .HasKey(TC => TC.CenterId);
+                .HasKey(TC => TC.centerID);
 
             modelBuilder.Entity<TestCenterManagement>()
                 .HasKey(TCM => TCM.phoneNum);
@@ -66,7 +66,7 @@ namespace Covid19Tracking
             modelBuilder.Entity<TestCenterManagement>()
                 .HasOne(TCM => TCM.testCenter)
                 .WithOne(TC => TC.testCenterMangement)
-                .HasForeignKey<TestCenterManagement>(TCM => TCM.manageID);
+                .HasForeignKey<TestCenterManagement>(TCM => TCM.centerID);
 
             // CitizenLocation relations 
 

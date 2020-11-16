@@ -17,7 +17,7 @@ namespace Covid19Tracking
         public TestCenter testCenter;
 
         [Key]
-        public int SSN { get; set; }
+        public string SSN { get; set; }
         public int TestedAtID { get; set; }
     }
 }

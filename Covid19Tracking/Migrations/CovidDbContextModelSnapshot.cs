@@ -18,9 +18,8 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.Citizen", b =>
                 {
-                    b.Property<int>("SSN")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
@@ -46,8 +45,8 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.CitizenLocation", b =>
                 {
-                    b.Property<int>("SSN")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Addr")
                         .HasColumnType("TEXT");
@@ -111,7 +110,7 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.TestCenter", b =>
                 {
-                    b.Property<int>("CenterId")
+                    b.Property<int>("centerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -121,7 +120,7 @@ namespace Covid19Tracking.Migrations
                     b.Property<int>("MunicipalityID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("CenterId");
+                    b.HasKey("centerID");
 
                     b.HasIndex("MunicipalityID");
 
@@ -134,15 +133,15 @@ namespace Covid19Tracking.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("centerID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("email")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("manageID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("phoneNum");
 
-                    b.HasIndex("manageID")
+                    b.HasIndex("centerID")
                         .IsUnique();
 
                     b.ToTable("Testcentermanagement");
@@ -150,8 +149,8 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.TestedAt", b =>
                 {
-                    b.Property<int>("SSN")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("TestedAtID")
                         .HasColumnType("INTEGER");
@@ -235,7 +234,7 @@ namespace Covid19Tracking.Migrations
                 {
                     b.HasOne("Covid19Tracking.TestCenter", "testCenter")
                         .WithOne("testCenterMangement")
-                        .HasForeignKey("Covid19Tracking.TestCenterManagement", "manageID")
+                        .HasForeignKey("Covid19Tracking.TestCenterManagement", "centerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Covid19Tracking
 {
@@ -21,9 +22,9 @@ namespace Covid19Tracking
             string Sex = Console.ReadLine();
 
             Console.WriteLine("Indtast personnummer som 10 tal\n");
-            int PersonNr = int.Parse(Console.ReadLine());
+            string PersonNr = Console.ReadLine();
 
-            Console.WriteLine("Indtast postnummer");
+            Console.WriteLine("Indtast Municipality ID 1-8 (2 er ikke med)");
             int PostNr = int.Parse(Console.ReadLine());
 
             var DummyCit = new Citizen();
@@ -36,6 +37,10 @@ namespace Covid19Tracking
                
             db.Add(DummyCit);
             db.SaveChanges();
+
+            Console.WriteLine("Dummy citizen er oprettet nu\n");
+            Thread.Sleep(5000);
+            Console.Clear();
         }
 
         public void DummyTestCenter(CovidDbContext db)
@@ -46,12 +51,12 @@ namespace Covid19Tracking
             Console.WriteLine("Indtast åbningstider\n");
             string Hours = (Console.ReadLine());
 
-            Console.WriteLine("Indtast Postnummer\n");
+            Console.WriteLine("Indtast Municipality ID igen\n");
             int TCPostNr = int.Parse(Console.ReadLine());
 
             var DummyTC = new TestCenter()
             {
-                CenterId = CenterID,
+                centerID = CenterID,
                 Hours = Hours,
                 MunicipalityID = TCPostNr
             };
@@ -59,7 +64,9 @@ namespace Covid19Tracking
             db.Add(DummyTC);
             db.SaveChanges();
 
-
+            Console.WriteLine("Dummy test center er oprettet nu\n");
+            Thread.Sleep(5000);
+            Console.Clear();
         }
 
 
@@ -78,11 +85,15 @@ namespace Covid19Tracking
             {
                 phoneNum = ManageNr,
                 email = ManageMail,
-                manageID = ManageID
+                centerID = ManageID
             };
 
             db.Add(DummyMan);
             db.SaveChanges();
+
+            Console.WriteLine("Dummy management er oprettet nu\n");
+            Thread.Sleep(5000);
+            Console.Clear();
 
         }
 
@@ -92,7 +103,7 @@ namespace Covid19Tracking
             var FindTestCenter = db.testCenters.Find(TestCenterID);
             var CitizenTestedAt = new TestedAt();
             CitizenTestedAt.SSN = FindCit.SSN;
-            CitizenTestedAt.TestedAtID = FindTestCenter.CenterId;
+            CitizenTestedAt.TestedAtID = FindTestCenter.centerID;
 
             Console.WriteLine("Indtast Dato for test (Format: m/dd\n");
             DateTime DummyDate = DateTime.Parse(Console.ReadLine());
@@ -121,7 +132,9 @@ namespace Covid19Tracking
             db.Add(CitizenTestedAt);
             db.SaveChanges();
 
-
+            Console.WriteLine("Dummy testcase er oprettet nu\n");
+            Thread.Sleep(5000);
+            Console.Clear();
         }
 
         public void DummyLocation(CovidDbContext db)
@@ -140,6 +153,10 @@ namespace Covid19Tracking
 
             db.Add(DummyLoc);
             db.SaveChanges();
+
+            Console.WriteLine("Dummy location er oprettet nu\n");
+            Thread.Sleep(5000);
+            Console.Clear();
 
 
         }

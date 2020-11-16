@@ -11,7 +11,9 @@ namespace Covid19Tracking
     [Table("Testcenter")]
     class TestCenter
     {
-        [Key] public int CenterId { get; set; }
+        [Key] 
+        public int centerID { get; set; }
+
         public string Hours { get; set; }
         public List<TestedAt> testedAts { get; set; }
         public TestCenterManagement testCenterMangement;

@@ -10,7 +10,7 @@ namespace Covid19Tracking
     class CitizenLocation
     {
         [Key]
-        public int SSN { get; set; }
+        public string SSN { get; set; }
         public string Addr { get; set; }
 
         public DateTime date { get; set; }

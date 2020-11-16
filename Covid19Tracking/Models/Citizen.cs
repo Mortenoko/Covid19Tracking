@@ -12,10 +12,11 @@ namespace Covid19Tracking
     {
         [Key]
         public int age { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Sex { get; set; }
-        public int SSN { get; set; }
+        public string SSN { get; set; }
         public List<TestedAt> testedAts { get; set; }
         public List<CitizenLocation> citizenLocations { get; set; }
         public Municipality municipality { get; set; }

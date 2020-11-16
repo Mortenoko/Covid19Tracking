@@ -10,11 +10,11 @@ namespace Covid19Tracking
     [Table("Testcentermanagement")]
     class TestCenterManagement
     {
-        public TestCenter testCenter { get; set; }
-
         [Key]
         public int phoneNum { get; set; }
+        public TestCenter testCenter { get; set; }
         public string email { get; set; }
-        public int manageID { get; set; }
+        public int centerID { get; set; }
+
     }
 }
