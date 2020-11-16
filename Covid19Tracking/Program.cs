@@ -15,7 +15,7 @@ namespace Covid19Tracking
             {
                 Console.WriteLine("Nu kommer dit valg \n"
                     + "Indtast 'B' for at oprette en borger\n"
-                    + "Indtast 'T' for at oprette TestCenter + Test Management\n"
+                    + "Indtast 'T' hvis du er oprettet som borger i systemet, så du kan oprette Test Center og Test Management\n"
                     + "Indtast 'L' for at oprette lokation\n"
                     + "Indtast 'C' hvis du er blevet testet\n"
                     + "Indtast 'E' for at lukke\n");
