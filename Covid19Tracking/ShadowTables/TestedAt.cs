@@ -18,6 +18,6 @@ namespace Covid19Tracking
 
         [Key]
         public string SSN { get; set; }
-        public int TestedAtID { get; set; }
+        public string centerName { get; set; }
     }
 }

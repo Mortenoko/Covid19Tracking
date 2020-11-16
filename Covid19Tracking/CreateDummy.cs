@@ -24,7 +24,7 @@ namespace Covid19Tracking
             Console.WriteLine("Indtast personnummer som 10 tal\n");
             string PersonNr = Console.ReadLine();
 
-            Console.WriteLine("Indtast Municipality ID 1-8 (2 er ikke med)");
+            Console.WriteLine("Indtast regions ID 1-7. Du trækker i så fald en tilfældig region. Undgå Sjælland ");
             int PostNr = int.Parse(Console.ReadLine());
 
             var DummyCit = new Citizen();
@@ -45,18 +45,18 @@ namespace Covid19Tracking
 
         public void DummyTestCenter(CovidDbContext db)
         {
-            Console.WriteLine("Indtast center ID\n");
-            int CenterID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast center navn\n");
+            string CenterNavn = Console.ReadLine();
 
             Console.WriteLine("Indtast åbningstider\n");
             string Hours = (Console.ReadLine());
 
-            Console.WriteLine("Indtast Municipality ID igen\n");
+            Console.WriteLine("Indtast regions ID for testcentret\n");
             int TCPostNr = int.Parse(Console.ReadLine());
 
             var DummyTC = new TestCenter()
             {
-                centerID = CenterID,
+                centerName = CenterNavn,
                 Hours = Hours,
                 MunicipalityID = TCPostNr
             };
@@ -78,14 +78,14 @@ namespace Covid19Tracking
             Console.WriteLine("Indtast testcentres email\n");
             string ManageMail = Console.ReadLine();
 
-            Console.WriteLine("Indtast ID for management\n");
-            int ManageID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Indtast navn for management\n");
+            string ManageName = Console.ReadLine();
 
             var DummyMan = new TestCenterManagement
             {
                 phoneNum = ManageNr,
                 email = ManageMail,
-                centerID = ManageID
+                centerName = ManageName
             };
 
             db.Add(DummyMan);
@@ -103,7 +103,7 @@ namespace Covid19Tracking
             var FindTestCenter = db.testCenters.Find(TestCenterID);
             var CitizenTestedAt = new TestedAt();
             CitizenTestedAt.SSN = FindCit.SSN;
-            CitizenTestedAt.TestedAtID = FindTestCenter.centerID;
+            CitizenTestedAt.centerName = FindTestCenter.centerName;
 
             Console.WriteLine("Indtast Dato for test (Format: m/dd\n");
             DateTime DummyDate = DateTime.Parse(Console.ReadLine());
@@ -142,7 +142,7 @@ namespace Covid19Tracking
             Console.WriteLine("Indtast adresse\n");
             string DummyAddr = Console.ReadLine();
 
-            Console.WriteLine("Indtast postnummer for nuværende adresse\n");
+            Console.WriteLine("Indtast regions ID for nuværende adresse\n");
             int DummyLocPostNr = int.Parse(Console.ReadLine());
 
             var DummyLoc = new Location()

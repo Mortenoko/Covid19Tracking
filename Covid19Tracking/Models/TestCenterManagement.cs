@@ -14,7 +14,7 @@ namespace Covid19Tracking
         public int phoneNum { get; set; }
         public TestCenter testCenter { get; set; }
         public string email { get; set; }
-        public int centerID { get; set; }
+        public string centerName { get; set; }
 
     }
 }

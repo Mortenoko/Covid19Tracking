@@ -18,7 +18,7 @@ namespace Covid19Tracking
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source = CovidDbContext.db");
+            => options.UseSqlite("Data Source = Covid19.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,7 +37,7 @@ namespace Covid19Tracking
                 .HasKey(N => N.NationName);
 
             modelBuilder.Entity<TestCenter>()
-                .HasKey(TC => TC.centerID);
+                .HasKey(TC => TC.centerName);
 
             modelBuilder.Entity<TestCenterManagement>()
                 .HasKey(TCM => TCM.phoneNum);
@@ -65,8 +65,9 @@ namespace Covid19Tracking
 
             modelBuilder.Entity<TestCenterManagement>()
                 .HasOne(TCM => TCM.testCenter)
-                .WithOne(TC => TC.testCenterMangement)
-                .HasForeignKey<TestCenterManagement>(TCM => TCM.centerID);
+                .WithOne(TC => TC.testCenterManagement)
+                .HasForeignKey<TestCenterManagement>(TestID => TestID.centerName);
+
 
             // CitizenLocation relations 
 
@@ -88,7 +89,7 @@ namespace Covid19Tracking
             modelBuilder.Entity<TestedAt>()
                 .HasOne(TC => TC.testCenter)
                 .WithMany(TA2 => TA2.testedAts)
-                .HasForeignKey(TC => TC.TestedAtID);
+                .HasForeignKey(TC => TC.centerName);
         }
     }
 }

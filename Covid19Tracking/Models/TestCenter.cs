@@ -12,13 +12,13 @@ namespace Covid19Tracking
     class TestCenter
     {
         [Key] 
-        public int centerID { get; set; }
-
+        public string centerName { get; set; }
         public string Hours { get; set; }
         public List<TestedAt> testedAts { get; set; }
-        public TestCenterManagement testCenterMangement;
+        public TestCenterManagement testCenterManagement;
         public Municipality municipality;
         public int MunicipalityID { get; set; }
+
 
 
     }

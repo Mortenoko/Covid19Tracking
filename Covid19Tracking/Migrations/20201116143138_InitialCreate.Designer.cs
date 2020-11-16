@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Covid19Tracking.Migrations
 {
     [DbContext(typeof(CovidDbContext))]
-    [Migration("20201116125556_InitialCreate")]
+    [Migration("20201116143138_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -112,9 +112,8 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.TestCenter", b =>
                 {
-                    b.Property<int>("CenterId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("centerName")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Hours")
                         .HasColumnType("TEXT");
@@ -122,7 +121,7 @@ namespace Covid19Tracking.Migrations
                     b.Property<int>("MunicipalityID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("CenterId");
+                    b.HasKey("centerName");
 
                     b.HasIndex("MunicipalityID");
 
@@ -131,16 +130,20 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.TestCenterManagement", b =>
                 {
-                    b.Property<int>("manageID")
+                    b.Property<int>("phoneNum")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("centerName")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("email")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("phoneNum")
-                        .HasColumnType("INTEGER");
+                    b.HasKey("phoneNum");
 
-                    b.HasKey("manageID");
+                    b.HasIndex("centerName")
+                        .IsUnique();
 
                     b.ToTable("Testcentermanagement");
                 });
@@ -150,8 +153,8 @@ namespace Covid19Tracking.Migrations
                     b.Property<string>("SSN")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TestedAtID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("centerName")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("date")
                         .HasColumnType("TEXT");
@@ -164,7 +167,7 @@ namespace Covid19Tracking.Migrations
 
                     b.HasKey("SSN");
 
-                    b.HasIndex("TestedAtID");
+                    b.HasIndex("centerName");
 
                     b.ToTable("TestedAt");
                 });
@@ -231,10 +234,8 @@ namespace Covid19Tracking.Migrations
             modelBuilder.Entity("Covid19Tracking.TestCenterManagement", b =>
                 {
                     b.HasOne("Covid19Tracking.TestCenter", "testCenter")
-                        .WithOne("testCenterMangement")
-                        .HasForeignKey("Covid19Tracking.TestCenterManagement", "manageID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithOne("testCenterManagement")
+                        .HasForeignKey("Covid19Tracking.TestCenterManagement", "centerName");
 
                     b.Navigation("testCenter");
                 });
@@ -249,9 +250,7 @@ namespace Covid19Tracking.Migrations
 
                     b.HasOne("Covid19Tracking.TestCenter", "testCenter")
                         .WithMany("testedAts")
-                        .HasForeignKey("TestedAtID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("centerName");
 
                     b.Navigation("citizen");
 
@@ -286,7 +285,7 @@ namespace Covid19Tracking.Migrations
 
             modelBuilder.Entity("Covid19Tracking.TestCenter", b =>
                 {
-                    b.Navigation("testCenterMangement");
+                    b.Navigation("testCenterManagement");
 
                     b.Navigation("testedAts");
                 });
