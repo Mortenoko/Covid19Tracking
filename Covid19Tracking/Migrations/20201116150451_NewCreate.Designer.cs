@@ -3,14 +3,16 @@ using System;
 using Covid19Tracking;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Covid19Tracking.Migrations
 {
     [DbContext(typeof(CovidDbContext))]
-    partial class CovidDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201116150451_NewCreate")]
+    partial class NewCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

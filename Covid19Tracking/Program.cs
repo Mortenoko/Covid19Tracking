@@ -10,10 +10,10 @@ namespace Covid19Tracking
         {
             var cd = new CreateDummy();
 
-            cd.DummyCitizen(db);
-            cd.DummyTestCenter(db);
-            cd.DummyManagement(db);
-            //cd.DummyTestCase(db, 1303951357, 23);
+            //cd.DummyCitizen(db);
+            //cd.DummyTestCenter(db);
+            //cd.DummyManagement(db);
+            cd.DummyTestCase(db, "80085123", "Ghetto");
             cd.DummyLocation(db);
         }
     }

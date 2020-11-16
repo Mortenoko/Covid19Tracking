@@ -97,15 +97,15 @@ namespace Covid19Tracking
 
         }
 
-        public void DummyTestCase(CovidDbContext db, int ssn, int TestCenterID)
+        public void DummyTestCase(CovidDbContext db, string ssn, string centerName)
         {
             var FindCit = db.citizens.Find(ssn);
-            var FindTestCenter = db.testCenters.Find(TestCenterID);
+            var FindTestCenter = db.testCenters.Find(centerName);
             var CitizenTestedAt = new TestedAt();
             CitizenTestedAt.SSN = FindCit.SSN;
             CitizenTestedAt.centerName = FindTestCenter.centerName;
 
-            Console.WriteLine("Indtast Dato for test (Format: m/dd\n");
+            Console.WriteLine("Indtast Dato for test (Format: mm/dd/yyyy\n");
             DateTime DummyDate = DateTime.Parse(Console.ReadLine());
             CitizenTestedAt.date = DummyDate;
 
@@ -121,11 +121,11 @@ namespace Covid19Tracking
 
             if (TestResult == "P")
             {
-                CitizenTestedAt.result = true;
+                CitizenTestedAt.result = "Positiv";
             }
             else if (TestResult =="N")
             {
-                CitizenTestedAt.result = false;
+                CitizenTestedAt.result = "Negativ";
             }
 
 

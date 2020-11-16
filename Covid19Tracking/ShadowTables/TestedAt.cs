@@ -12,7 +12,7 @@ namespace Covid19Tracking
     {
         public string status { get; set; }
         public DateTime date { get; set; }
-        public bool result { get; set; }
+        public string result { get; set; }
         public Citizen citizen;
         public TestCenter testCenter;
 
