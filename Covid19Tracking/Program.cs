@@ -10,11 +10,49 @@ namespace Covid19Tracking
         {
             var cd = new CreateDummy();
 
-            //cd.DummyCitizen(db);
-            //cd.DummyTestCenter(db);
-            //cd.DummyManagement(db);
-            cd.DummyTestCase(db, "80085123", "Ghetto");
-            cd.DummyLocation(db);
+
+            do
+            {
+                Console.WriteLine("Nu kommer dit valg \n"
+                    + "Indtast 'B' for at oprette en borger\n"
+                    + "Indtast 'T' for at oprette TestCenter + Test Management\n"
+                    + "Indtast 'L' for at oprette lokation\n"
+                    + "Indtast 'C' hvis du er blevet testet\n"
+                    + "Indtast 'E' for at lukke\n");
+
+
+                string valg = Console.ReadLine();
+
+                switch (valg)
+                {
+                    case "B":
+                        cd.DummyCitizen(db);
+                        break;
+
+                    case "T":
+                        cd.DummyTestCenter(db);
+                        cd.DummyManagement(db);
+                        break;
+
+                    case "L":
+                        cd.DummyLocation(db);
+                        break;
+
+                    case "C":
+                        Console.WriteLine("Indtast CPR nummer oplyst ved oprettelse af borger");
+                        string CPR = Console.ReadLine();
+                        Console.WriteLine("Indtast Testcenter du blev testet ved");
+                        string TestetVed = Console.ReadLine();
+
+
+                        cd.DummyTestCase(db, CPR, TestetVed);
+                        break;
+
+                    case "E":
+                        Environment.Exit(0);
+                        break;
+                }
+            } while (true);
         }
     }
 }
