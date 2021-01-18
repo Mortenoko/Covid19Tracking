@@ -18,7 +18,8 @@ namespace Covid19Tracking
                     + "Indtast 'T' hvis du er oprettet som borger i systemet, så du kan oprette Test Center og Test Management\n"
                     + "Indtast 'L' for at oprette lokation\n"
                     + "Indtast 'C' hvis du er blevet testet\n"
-                    + "Indtast 'E' for at lukke\n");
+                    + "Indtast 'E' for at lukke\n"
+                    + "Indtast 'S' for at søge\n");
 
 
                 string valg = Console.ReadLine();
@@ -51,7 +52,34 @@ namespace Covid19Tracking
                     case "E":
                         Environment.Exit(0);
                         break;
-                }
+                    case "S":
+                        Console.Clear();
+
+                        do
+                        {
+                            Console.WriteLine("Nu kommer dit valg \n"
+                                            + "Indtast 'N' for at søge efter navn\n"
+                                            + "Indtast 'A' for at søge efter aldersgruppe\n"
+                                            + "Indtast 'K' for at søge efter køn\n"
+                                            + "Indtast 'M' for at søge efter municipality\n"
+                                            + "Indtast 'E' for at lukke\n");
+
+                            string sValg = Console.ReadLine();
+
+                            switch (sValg)
+                            {
+                                case "N":
+                                    cd.ViewDummyCitizen(db);
+                                    break;
+                                case "A":
+                                    cd.ViewDummyByAge(db);
+                                    break;
+                                case "M":
+                                    cd.ViewDummyByMunicipality(db);
+                                    break;
+                            }
+                        } while (true);
+                } 
             } while (true);
         }
     }

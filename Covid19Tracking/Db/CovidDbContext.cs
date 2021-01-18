@@ -15,10 +15,12 @@ namespace Covid19Tracking
         public DbSet<TestCenter> testCenters { get; set; }
         public DbSet<TestCenterManagement> testCenterManagements { get; set; }
         public DbSet<Municipality> municipalities { get; set; }
+        public DbSet<CitizenLocation> citizenLocations { get; set; }
+        public DbSet<TestedAt> testedAts { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source = Covid19.db");
+            => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
